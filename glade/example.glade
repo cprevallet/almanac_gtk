@@ -106,7 +106,7 @@
                 <property name="can-focus">False</property>
                 <child>
                   <object class="GtkButton" id="button1">
-                    <property name="label">gtk-apply</property>
+                    <property name="label">gtk-execute</property>
                     <property name="width-request">57</property>
                     <property name="height-request">34</property>
                     <property name="visible">True</property>
@@ -118,6 +118,7 @@
                     <property name="margin-top">5</property>
                     <property name="margin-bottom">5</property>
                     <property name="use-stock">True</property>
+                    <property name="always-show-image">True</property>
                     <signal name="clicked" handler="_on_clicked" swapped="no"/>
                   </object>
                   <packing>
@@ -467,11 +468,14 @@
                       <object class="GtkTextView">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
+                        <property name="pixels-below-lines">3</property>
                         <property name="left-margin">5</property>
                         <property name="right-margin">5</property>
                         <property name="top-margin">5</property>
                         <property name="bottom-margin">5</property>
+                        <property name="indent">5</property>
                         <property name="buffer">textbuffer1</property>
+                        <property name="monospace">True</property>
                       </object>
                     </child>
                   </object>
