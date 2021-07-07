@@ -1,5 +1,5 @@
 # change application name here (executable output name)
-TARGET=template_app
+TARGET=aa_gtk
 
 # compiler
 CC=gcc
