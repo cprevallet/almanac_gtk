@@ -7,8 +7,38 @@ GtkSpinButton *sb_min;
 GtkSpinButton *sb_sec;
 GtkSpinButton *sb_int;
 GtkSpinButton *sb_numint;
+GtkSpinButton *sb_lat;
+GtkSpinButton *sb_lng;
+GtkSpinButton *sb_height;
+GtkSpinButton *sb_temp;
+GtkSpinButton *sb_press;
 GtkCalendar   *cal;
 GtkComboBox   *cb_planet;
+
+// Store the GUI variables in user's home directory
+// for use with aa.
+int store_ini() {
+    FILE *fp, *fopen();
+    char s[84];
+    char *t = getenv("HOME");
+    strcpy(s, "aa.ini");
+    if (t && strlen(t)<70)
+      {
+        strcpy(s,t);
+        strcat(s,"/.aa.ini");
+      }
+    if ((fp=fopen(s,"w+"))) {
+        fprintf(fp, "%s\n", s);
+        fprintf(fp, "%f ;Terrestrial east longitude of observer, degrees \n", gtk_spin_button_get_value(sb_lng));
+        fprintf(fp, "%f ;Geodetic latitude, degrees\n", gtk_spin_button_get_value(sb_lat));
+        fprintf(fp, "%f ;Height above sea level, meters\n", gtk_spin_button_get_value(sb_height));
+        fprintf(fp, "%f ;Atmospheric temperature, deg C\n", gtk_spin_button_get_value(sb_temp));
+        fprintf(fp, "%f ;Atmospheric pressure, millibars\n", gtk_spin_button_get_value(sb_press));
+        fprintf(fp, "%d ; 0 - TDT=UT, 1 - input=TDT, 2 - input=UT\n", 2);
+        fprintf(fp, "%d ; Use this deltaT (sec) if nonzero, else compute it.\n", 0);
+    }
+    return 0;
+}
 
 int get_values() {
     int hr = gtk_spin_button_get_value_as_int(sb_hr);
@@ -39,6 +69,7 @@ int get_values() {
 }
 
 void _on_clicked(GtkButton *b) {
+  store_ini();
   get_values();
   GtkTextMark *mark;
   GtkTextIter iter;
@@ -81,6 +112,11 @@ int main(int argc, char *argv[])
     sb_sec  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb3"));
     sb_int  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb4"));
     sb_numint  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb5"));
+    sb_lat  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb6"));
+    sb_lng  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb7"));
+    sb_height  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb8"));
+    sb_temp  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb9"));
+    sb_press  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb10"));
     cal = GTK_CALENDAR(gtk_builder_get_object(builder, "cal")); 
     cb_planet = GTK_COMBO_BOX(gtk_builder_get_object(builder, "cb_planet1"));
 
