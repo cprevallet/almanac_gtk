@@ -107,12 +107,14 @@
                 <child>
                   <object class="GtkButton" id="button1">
                     <property name="label">gtk-execute</property>
-                    <property name="width-request">57</property>
+                    <property name="width-request">90</property>
                     <property name="height-request">34</property>
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="receives-default">True</property>
                     <property name="tooltip-text" translatable="yes">Press to see the results!</property>
+                    <property name="margin-left">5</property>
+                    <property name="margin-right">5</property>
                     <property name="margin-start">5</property>
                     <property name="margin-end">5</property>
                     <property name="margin-top">5</property>
@@ -122,7 +124,7 @@
                     <signal name="clicked" handler="_on_clicked" swapped="no"/>
                   </object>
                   <packing>
-                    <property name="y">400</property>
+                    <property name="y">368</property>
                   </packing>
                 </child>
                 <child>
@@ -152,9 +154,7 @@
                     <property name="margin-end">5</property>
                     <property name="margin-top">5</property>
                     <property name="margin-bottom">5</property>
-                    <property name="year">2021</property>
-                    <property name="month">5</property>
-                    <property name="day">3</property>
+                    <property name="year">2000</property>
                   </object>
                   <packing>
                     <property name="y">5</property>
@@ -293,6 +293,8 @@
                 </child>
                 <child>
                   <object class="GtkLabel" id="label4">
+                    <property name="width-request">123</property>
+                    <property name="height-request">37</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-left">5</property>
@@ -305,7 +307,7 @@
 </property>
                   </object>
                   <packing>
-                    <property name="y">186</property>
+                    <property name="y">182</property>
                   </packing>
                 </child>
                 <child>
@@ -407,6 +409,12 @@
                     <property name="height-request">34</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
+                    <property name="margin-left">5</property>
+                    <property name="margin-right">5</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
                     <property name="active">0</property>
                     <items>
                       <item id="0" translatable="yes">Sun</item>
@@ -422,7 +430,6 @@
                     </items>
                   </object>
                   <packing>
-                    <property name="x">6</property>
                     <property name="y">329</property>
                   </packing>
                 </child>
