@@ -1,6 +1,6 @@
 #include <gtk/gtk.h>
 
-// globals
+// make UI elements globals (ick)
 GtkTextBuffer *textbuffer1;
 GtkSpinButton *sb_hr;
 GtkSpinButton *sb_min;
@@ -14,6 +14,9 @@ GtkSpinButton *sb_temp;
 GtkSpinButton *sb_press;
 GtkCalendar   *cal;
 GtkComboBox   *cb_planet;
+GtkRadioButton *rb_TTUT;
+GtkRadioButton *rb_TT;
+GtkRadioButton *rb_UT;
 
 // Store the GUI variables in user's home directory
 // for use with aa.
@@ -27,16 +30,25 @@ int store_ini() {
         strcpy(s,t);
         strcat(s,"/.aa.ini");
       }
-    if ((fp=fopen(s,"w+"))) {
-        fprintf(fp, "%s\n", s);
+    if ((fp=fopen(s,"w"))) {
+        //fprintf(fp, "%s\n", s);
         fprintf(fp, "%f ;Terrestrial east longitude of observer, degrees \n", gtk_spin_button_get_value(sb_lng));
         fprintf(fp, "%f ;Geodetic latitude, degrees\n", gtk_spin_button_get_value(sb_lat));
         fprintf(fp, "%f ;Height above sea level, meters\n", gtk_spin_button_get_value(sb_height));
         fprintf(fp, "%f ;Atmospheric temperature, deg C\n", gtk_spin_button_get_value(sb_temp));
         fprintf(fp, "%f ;Atmospheric pressure, millibars\n", gtk_spin_button_get_value(sb_press));
-        fprintf(fp, "%d ; 0 - TDT=UT, 1 - input=TDT, 2 - input=UT\n", 2);
+        if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_TTUT))) {
+            fprintf(fp, "%d ; 0 - TDT=UT, 1 - input=TDT, 2 - input=UT\n", 0);
+        }
+        if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_TT))) {
+            fprintf(fp, "%d ; 0 - TDT=UT, 1 - input=TDT, 2 - input=UT\n", 1);
+        }
+        if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_UT))) {
+            fprintf(fp, "%d ; 0 - TDT=UT, 1 - input=TDT, 2 - input=UT\n", 2);
+        }
         fprintf(fp, "%d ; Use this deltaT (sec) if nonzero, else compute it.\n", 0);
     }
+    fclose(fp);
     return 0;
 }
 
@@ -119,6 +131,10 @@ int main(int argc, char *argv[])
     sb_press  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb10"));
     cal = GTK_CALENDAR(gtk_builder_get_object(builder, "cal")); 
     cb_planet = GTK_COMBO_BOX(gtk_builder_get_object(builder, "cb_planet1"));
+    rb_TTUT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb1"));
+    rb_TT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb2"));
+    rb_UT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb3"));
+
 
     // gtk_builder_connect_signals(builder, widgets);
     gtk_builder_connect_signals(builder, NULL);
