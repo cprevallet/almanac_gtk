@@ -200,22 +200,22 @@ int main(int argc, char *argv[])
 
     window = GTK_WIDGET(gtk_builder_get_object(builder, "window1"));
     textbuffer1  = GTK_TEXT_BUFFER(gtk_builder_get_object(builder, "textbuffer1"));
-    sb_hr  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb1"));
-    sb_min  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb2"));
-    sb_sec  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb3"));
-    sb_int  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb4"));
-    sb_numint  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb5"));
+    sb_hr  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb13"));
+    sb_min  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb12"));
+    sb_sec  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb14"));
+    sb_int  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb26"));
+    sb_numint  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb27"));
     sb_lat  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb6"));
     sb_lng  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb7"));
     sb_height  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb8"));
     sb_temp  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb9"));
     sb_press  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb10"));
-    sb_dt  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb11"));
-    cal = GTK_CALENDAR(gtk_builder_get_object(builder, "cal")); 
-    cb_planet = GTK_COMBO_BOX(gtk_builder_get_object(builder, "cb_planet1"));
-    rb_TTUT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb1"));
-    rb_TT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb2"));
-    rb_UT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb3"));
+    sb_dt  = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb22"));
+    cal = GTK_CALENDAR(gtk_builder_get_object(builder, "cal1")); 
+    cb_planet = GTK_COMBO_BOX(gtk_builder_get_object(builder, "cb_planet3"));
+    rb_TTUT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb4"));
+    rb_TT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb5"));
+    rb_UT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb6"));
 
 
     // gtk_builder_connect_signals(builder, widgets);
