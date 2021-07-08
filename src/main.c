@@ -18,6 +18,41 @@ GtkComboBox   *cb_planet;
 GtkRadioButton *rb_TTUT;
 GtkRadioButton *rb_TT;
 GtkRadioButton *rb_UT;
+GtkRadioButton *rb_planet;
+GtkComboBox   *cb_star;
+GtkRadioButton *rb_star;
+GtkEntry       *ent_starcat;
+static char starnam[80] = "/usr/share/aa/star.cat";
+//struct entry
+//	{
+//	char obname[32];	/* Object name (31 chars) */
+//	int  line;		    /* Line number */
+//	};
+
+// Read star catalog.
+int read_star() {
+    FILE *f, *fopen();
+    GtkListStore *liststore;
+
+    liststore = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_INT);
+//    GSList *starlist = NULL;
+//    entry  *star = NULL;
+    f = fopen( starnam, "r" );
+    //Store as a linked list
+    gtk_list_store_insert_with_values(liststore, NULL, -1,
+                                      0, "alpha",
+                                      1,  1,
+                                      -1);
+    gtk_list_store_insert_with_values(liststore, NULL, -1,
+                                      0, "beta",
+                                      1,  2,
+                                      -1);
+    gtk_combo_box_set_model (cb_star, GTK_TREE_MODEL(liststore));
+    /* liststore is now owned by combo, so the initial reference can
+     * be dropped */
+    g_object_unref(liststore);
+
+}
 
 // Store the GUI variables in user's home directory as ana.ini
 // for use with aa.
@@ -88,6 +123,7 @@ int store_values() {
 // Load the values stored in the ini file as initial widget values.
 // Also initialize the calendar and time widgets with the current UTC values.
 int initialize_widgets() {
+  read_star();
   time_t rawtime;
   struct tm *utc;
   time(&rawtime);
@@ -98,6 +134,7 @@ int initialize_widgets() {
   gtk_spin_button_set_value(sb_sec, utc->tm_sec);
   gtk_calendar_select_month(cal, utc->tm_mon, utc->tm_year+1900);
   gtk_calendar_select_day(cal, utc->tm_mday);
+  gtk_entry_set_text (ent_starcat, starnam);
   FILE *f, *fopen();
   char s[84]; //oddly specific
   double tlong, glat, height, attemp, atpress, dtgiven;
@@ -152,11 +189,6 @@ int initialize_widgets() {
 void _clear_results (GtkButton *b) {
     GtkTextIter start;
     GtkTextIter end;
-    //gtk_text_buffer_get_start_iter (textbuffer1, start);
-    //gtk_text_buffer_get_end_iter(textbuffer1, end);
-    //gtk_text_buffer_get_iter_at_line(textbuffer1, start, 0);
-    //gtk_text_buffer_get_iter_at_line(textbuffer1, end, 1);
-    //end = textbuffer1->get_iter_at_line(textbuffer1->get_line_count());
     gtk_text_buffer_get_bounds (textbuffer1, &start, &end);
     gtk_text_buffer_delete (textbuffer1, &start, &end);
 }
@@ -217,6 +249,10 @@ int main(int argc, char *argv[])
     rb_TT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb5"));
     rb_UT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb6"));
 
+    rb_planet = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb1"));
+    rb_star = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb2"));
+    cb_star = GTK_COMBO_BOX(gtk_builder_get_object(builder, "cb_star1"));
+    ent_starcat = GTK_ENTRY(gtk_builder_get_object(builder, "entry1"));
 
     // gtk_builder_connect_signals(builder, widgets);
     gtk_builder_connect_signals(builder, NULL);

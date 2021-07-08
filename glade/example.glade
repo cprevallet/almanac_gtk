@@ -121,6 +121,14 @@
     <property name="active">True</property>
     <property name="draw-indicator">True</property>
   </object>
+  <object class="GtkRadioButton" id="radiobutton2">
+    <property name="label" translatable="yes">radiobutton</property>
+    <property name="visible">True</property>
+    <property name="can-focus">True</property>
+    <property name="receives-default">False</property>
+    <property name="active">True</property>
+    <property name="draw-indicator">True</property>
+  </object>
   <object class="GtkTextBuffer" id="textbuffer1"/>
   <object class="GtkWindow" id="window1">
     <property name="can-focus">False</property>
@@ -412,7 +420,7 @@
                 <property name="can-focus">False</property>
                 <child>
                   <object class="GtkFrame" id="frame2">
-                    <property name="width-request">100</property>
+                    <property name="width-request">400</property>
                     <property name="height-request">80</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
@@ -691,6 +699,7 @@
 </property>
                           </object>
                           <packing>
+                            <property name="x">19</property>
                             <property name="y">183</property>
                           </packing>
                         </child>
@@ -883,11 +892,11 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="y">421</property>
+                    <property name="y">463</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkFrame">
+                  <object class="GtkFrame" id="frame0">
                     <property name="width-request">400</property>
                     <property name="height-request">80</property>
                     <property name="visible">True</property>
@@ -909,21 +918,6 @@
                           <object class="GtkFixed">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <child>
-                              <object class="GtkLabel" id="label33">
-                                <property name="width-request">42</property>
-                                <property name="height-request">20</property>
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-left">5</property>
-                                <property name="margin-right">5</property>
-                                <property name="margin-start">5</property>
-                                <property name="margin-end">5</property>
-                                <property name="margin-top">5</property>
-                                <property name="margin-bottom">5</property>
-                                <property name="label" translatable="yes">Planet</property>
-                              </object>
-                            </child>
                             <child>
                               <object class="GtkComboBoxText" id="cb_planet3">
                                 <property name="width-request">96</property>
@@ -952,6 +946,60 @@
                               </object>
                               <packing>
                                 <property name="y">19</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkComboBoxText" id="cb_star1">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">5</property>
+                                <property name="margin-right">5</property>
+                                <property name="margin-start">5</property>
+                                <property name="margin-end">5</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="active">0</property>
+                              </object>
+                              <packing>
+                                <property name="x">200</property>
+                                <property name="y">59</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="entry1">
+                                <property name="name">entry1</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="tooltip-text" translatable="yes">Star catalog filename</property>
+                              </object>
+                              <packing>
+                                <property name="x">205</property>
+                                <property name="y">22</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkRadioButton" id="rb1">
+                                <property name="label" translatable="yes">Planet</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">False</property>
+                                <property name="active">True</property>
+                                <property name="draw-indicator">True</property>
+                                <property name="group">radiobutton2</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkRadioButton" id="rb2">
+                                <property name="label" translatable="yes">Star</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="receives-default">False</property>
+                                <property name="active">True</property>
+                                <property name="draw-indicator">True</property>
+                                <property name="group">radiobutton2</property>
+                              </object>
+                              <packing>
+                                <property name="x">200</property>
                               </packing>
                             </child>
                           </object>
