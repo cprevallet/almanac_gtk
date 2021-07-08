@@ -93,7 +93,7 @@ int store_ini() {
     }
 }
 
-// Store other values aa expects in a temp file.
+// Store other values aa expects in a temp file to stream to aa.
 int store_values() {
     int hr = gtk_spin_button_get_value_as_int(sb_hr);
     int min = gtk_spin_button_get_value_as_int(sb_min);
@@ -104,8 +104,25 @@ int store_values() {
     guint mon;
     guint day;
     gtk_calendar_get_date(cal, &year, &mon, &day);
-    //if rb_planet
-    gint active_item = gtk_combo_box_get_active(cb_planet);
+    gint active_item = 0;
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_planet))) {
+        active_item = gtk_combo_box_get_active(cb_planet);
+    }
+    //Star-stuff, this is entirely too complicated!
+    const gchar* catalog;
+    int file_line = 0;
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_star))) {
+        active_item = 88;
+        catalog = gtk_entry_get_text(ent_starcat);
+        //printf("%s", catalog);
+        GtkTreeModel *tree_model = gtk_combo_box_get_model(cb_star);
+        GtkTreeIter iter;
+        gtk_combo_box_get_active_iter(cb_star, &iter);
+        GValue linenum = G_VALUE_INIT;
+        gtk_tree_model_get_value(tree_model, &iter, 1, &linenum);
+        //printf("%d", g_value_get_int(&linenum));
+        file_line = g_value_get_int(&linenum);
+    }
     FILE *fp;
     fp = fopen("/tmp/aa.txt", "w+");
     if(fp) {
@@ -118,6 +135,10 @@ int store_values() {
         fprintf(fp, "%f\n", interval);
         fprintf(fp, "%d\n", num_intervals);
         fprintf(fp, "%d\n", active_item);
+        if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_star))) {
+        fprintf(fp, "%s\n", catalog);
+        fprintf(fp, "%d\n", file_line);
+        }
         fclose(fp);
         return 0;
     } else {
