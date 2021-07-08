@@ -393,97 +393,15 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Observer</property>
+                        <property name="label" translatable="yes">Location and Atmospheric Conditions</property>
                       </object>
                     </child>
                   </object>
-                </child>
-                <child>
-                  <object class="GtkFrame">
-                    <property name="width-request">400</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="margin-right">5</property>
-                    <property name="margin-start">5</property>
-                    <property name="margin-end">5</property>
-                    <property name="margin-top">5</property>
-                    <property name="margin-bottom">5</property>
-                    <property name="label-xalign">0</property>
-                    <property name="shadow-type">out</property>
-                    <child>
-                      <object class="GtkAlignment">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="left-padding">12</property>
-                        <child>
-                          <object class="GtkFixed">
-                            <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <child>
-                              <object class="GtkLabel" id="label33">
-                                <property name="width-request">42</property>
-                                <property name="height-request">20</property>
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-left">5</property>
-                                <property name="margin-right">5</property>
-                                <property name="margin-start">5</property>
-                                <property name="margin-end">5</property>
-                                <property name="margin-top">5</property>
-                                <property name="margin-bottom">5</property>
-                                <property name="label" translatable="yes">Planet</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkComboBoxText" id="cb_planet3">
-                                <property name="width-request">96</property>
-                                <property name="height-request">34</property>
-                                <property name="visible">True</property>
-                                <property name="can-focus">False</property>
-                                <property name="margin-left">5</property>
-                                <property name="margin-right">5</property>
-                                <property name="margin-start">5</property>
-                                <property name="margin-end">5</property>
-                                <property name="margin-top">5</property>
-                                <property name="margin-bottom">5</property>
-                                <property name="active">0</property>
-                                <items>
-                                  <item id="0" translatable="yes">Sun</item>
-                                  <item id="1" translatable="yes">Mercury</item>
-                                  <item id="2" translatable="yes">Venus</item>
-                                  <item id="3" translatable="yes">Moon</item>
-                                  <item id="4" translatable="yes">Mars</item>
-                                  <item id="5" translatable="yes">Jupiter</item>
-                                  <item id="6" translatable="yes">Saturn</item>
-                                  <item id="7" translatable="yes">Uranus</item>
-                                  <item id="8" translatable="yes">Neptune</item>
-                                  <item id="9" translatable="yes">Pluto</item>
-                                </items>
-                              </object>
-                              <packing>
-                                <property name="y">19</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child type="label">
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Object</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="y">350</property>
-                  </packing>
                 </child>
               </object>
               <packing>
                 <property name="name">page0</property>
-                <property name="title" translatable="yes">Locations</property>
+                <property name="title" translatable="yes">Observer</property>
               </packing>
             </child>
             <child>
@@ -657,7 +575,7 @@
                             <property name="group">radiobutton1</property>
                           </object>
                           <packing>
-                            <property name="y">189</property>
+                            <property name="y">209</property>
                           </packing>
                         </child>
                         <child>
@@ -671,7 +589,7 @@
                             <property name="group">radiobutton1</property>
                           </object>
                           <packing>
-                            <property name="y">210</property>
+                            <property name="y">230</property>
                           </packing>
                         </child>
                         <child>
@@ -685,7 +603,7 @@
                             <property name="group">radiobutton1</property>
                           </object>
                           <packing>
-                            <property name="y">232</property>
+                            <property name="y">252</property>
                           </packing>
                         </child>
                         <child>
@@ -757,6 +675,25 @@
                             <property name="y">5</property>
                           </packing>
                         </child>
+                        <child>
+                          <object class="GtkLabel" id="label1">
+                            <property name="width-request">45</property>
+                            <property name="height-request">37</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <property name="margin-left">5</property>
+                            <property name="margin-right">5</property>
+                            <property name="margin-start">5</property>
+                            <property name="margin-end">5</property>
+                            <property name="margin-top">5</property>
+                            <property name="margin-bottom">5</property>
+                            <property name="label" translatable="yes">Scale
+</property>
+                          </object>
+                          <packing>
+                            <property name="y">183</property>
+                          </packing>
+                        </child>
                       </object>
                     </child>
                     <child type="label">
@@ -803,7 +740,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
-                            <property name="tooltip-text" translatable="yes">Press to see the results!</property>
+                            <property name="tooltip-text" translatable="yes">Generate report</property>
                             <property name="margin-left">5</property>
                             <property name="margin-right">5</property>
                             <property name="margin-start">5</property>
@@ -830,7 +767,7 @@
                             <property name="margin-end">5</property>
                             <property name="margin-top">5</property>
                             <property name="margin-bottom">5</property>
-                            <property name="label" translatable="yes">Tabulation Interval
+                            <property name="label" translatable="yes">Tabulation Interval (Days)
 </property>
                           </object>
                         </child>
@@ -889,7 +826,7 @@
                             <property name="height-request">34</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
-                            <property name="tooltip-text" translatable="yes">Number of Intervals</property>
+                            <property name="tooltip-text" translatable="yes">Number of Intervals to generate</property>
                             <property name="margin-left">5</property>
                             <property name="margin-right">5</property>
                             <property name="margin-start">5</property>
@@ -919,7 +856,7 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
-                            <property name="tooltip-text" translatable="yes">Press to clear the results</property>
+                            <property name="tooltip-text" translatable="yes">Clear the report window</property>
                             <property name="margin-left">5</property>
                             <property name="margin-right">5</property>
                             <property name="margin-start">5</property>
@@ -941,23 +878,104 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Program Control</property>
+                        <property name="label" translatable="yes">Ephemeris Report</property>
                       </object>
                     </child>
                   </object>
                   <packing>
-                    <property name="y">296</property>
+                    <property name="y">421</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFrame">
+                    <property name="width-request">400</property>
+                    <property name="height-request">80</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-left">5</property>
+                    <property name="margin-right">5</property>
+                    <property name="margin-start">5</property>
+                    <property name="margin-end">5</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="label-xalign">0</property>
+                    <property name="shadow-type">out</property>
+                    <child>
+                      <object class="GtkAlignment">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="left-padding">12</property>
+                        <child>
+                          <object class="GtkFixed">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                            <child>
+                              <object class="GtkLabel" id="label33">
+                                <property name="width-request">42</property>
+                                <property name="height-request">20</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">5</property>
+                                <property name="margin-right">5</property>
+                                <property name="margin-start">5</property>
+                                <property name="margin-end">5</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="yes">Planet</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkComboBoxText" id="cb_planet3">
+                                <property name="width-request">96</property>
+                                <property name="height-request">34</property>
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="margin-left">5</property>
+                                <property name="margin-right">5</property>
+                                <property name="margin-start">5</property>
+                                <property name="margin-end">5</property>
+                                <property name="margin-top">5</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="active">0</property>
+                                <items>
+                                  <item id="0" translatable="yes">Sun</item>
+                                  <item id="1" translatable="yes">Mercury</item>
+                                  <item id="2" translatable="yes">Venus</item>
+                                  <item id="3" translatable="yes">Moon</item>
+                                  <item id="4" translatable="yes">Mars</item>
+                                  <item id="5" translatable="yes">Jupiter</item>
+                                  <item id="6" translatable="yes">Saturn</item>
+                                  <item id="7" translatable="yes">Uranus</item>
+                                  <item id="8" translatable="yes">Neptune</item>
+                                  <item id="9" translatable="yes">Pluto</item>
+                                </items>
+                              </object>
+                              <packing>
+                                <property name="y">19</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Observation</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="y">316</property>
                   </packing>
                 </child>
               </object>
               <packing>
                 <property name="name">page1</property>
-                <property name="title" translatable="yes">Time</property>
+                <property name="title" translatable="yes">Almanac</property>
                 <property name="position">1</property>
               </packing>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
           <packing>
@@ -1012,7 +1030,7 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Results</property>
+                <property name="label" translatable="yes">Report</property>
               </object>
             </child>
           </object>
