@@ -180,7 +180,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <child>
-                          <object class="GtkLabel" id="label8">
+                          <object class="GtkLabel" id="l_lat">
                             <property name="width-request">118</property>
                             <property name="height-request">37</property>
                             <property name="visible">True</property>
@@ -194,7 +194,7 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="sb6">
+                          <object class="GtkSpinButton" id="sb_lat">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="tooltip-text" translatable="yes">Geodetic latitude of observer, degrees</property>
@@ -216,7 +216,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label9">
+                          <object class="GtkLabel" id="l_lng">
                             <property name="width-request">132</property>
                             <property name="height-request">37</property>
                             <property name="visible">True</property>
@@ -233,7 +233,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="sb7">
+                          <object class="GtkSpinButton" id="sb_lng">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="tooltip-text" translatable="yes">Terrestrial east longitude of observer, degrees</property>
@@ -255,7 +255,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label10">
+                          <object class="GtkLabel" id="l_height">
                             <property name="width-request">204</property>
                             <property name="height-request">37</property>
                             <property name="visible">True</property>
@@ -272,7 +272,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="sb8">
+                          <object class="GtkSpinButton" id="sb_height">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="tooltip-text" translatable="yes">Observer location height above sea level in meters.</property>
@@ -294,7 +294,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label11">
+                          <object class="GtkLabel" id="l_temp">
                             <property name="width-request">204</property>
                             <property name="height-request">37</property>
                             <property name="visible">True</property>
@@ -311,7 +311,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label12">
+                          <object class="GtkLabel" id="l_press">
                             <property name="width-request">207</property>
                             <property name="height-request">37</property>
                             <property name="visible">True</property>
@@ -328,7 +328,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="sb9">
+                          <object class="GtkSpinButton" id="sb_temp">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="tooltip-text" translatable="yes">Atmospheric temperature at location in degrees C</property>
@@ -350,7 +350,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="sb10">
+                          <object class="GtkSpinButton" id="sb_press">
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="tooltip-text" translatable="yes">Atmospheric pressure at location in millibars</property>
@@ -412,7 +412,7 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <child>
-                          <object class="GtkLabel" id="label15">
+                          <object class="GtkLabel" id="l_min">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="margin-start">5</property>
@@ -428,7 +428,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label16">
+                          <object class="GtkLabel" id="l_hr">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="margin-start">5</property>
@@ -444,7 +444,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="sb12">
+                          <object class="GtkSpinButton" id="sb_min">
                             <property name="name">sb_min</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
@@ -468,7 +468,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="sb13">
+                          <object class="GtkSpinButton" id="sb_hr">
                             <property name="name">sb_hr</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
@@ -492,7 +492,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label17">
+                          <object class="GtkLabel" id="l_sec">
                             <property name="width-request">48</property>
                             <property name="height-request">37</property>
                             <property name="visible">True</property>
@@ -510,7 +510,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="sb14">
+                          <object class="GtkSpinButton" id="sb_sec">
                             <property name="name">sb_sec</property>
                             <property name="width-request">118</property>
                             <property name="height-request">34</property>
@@ -536,7 +536,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkRadioButton" id="rb4">
+                          <object class="GtkRadioButton" id="rb_TTUT">
                             <property name="label" translatable="yes">TDT = UT</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
@@ -550,7 +550,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkRadioButton" id="rb5">
+                          <object class="GtkRadioButton" id="rb_TT">
                             <property name="label" translatable="yes">TDT</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
@@ -564,7 +564,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkRadioButton" id="rb6">
+                          <object class="GtkRadioButton" id="rb_UT">
                             <property name="label" translatable="yes">Universal Time</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
@@ -578,7 +578,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label26">
+                          <object class="GtkLabel" id="l_dt">
                             <property name="width-request">45</property>
                             <property name="height-request">37</property>
                             <property name="visible">True</property>
@@ -596,7 +596,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="sb22">
+                          <object class="GtkSpinButton" id="sb_dt">
                             <property name="name">sb_dt</property>
                             <property name="width-request">137</property>
                             <property name="height-request">34</property>
@@ -641,7 +641,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label1">
+                          <object class="GtkLabel" id="l_scale">
                             <property name="width-request">45</property>
                             <property name="height-request">37</property>
                             <property name="visible">True</property>
@@ -693,7 +693,7 @@
                         <property name="margin-top">5</property>
                         <property name="margin-bottom">5</property>
                         <child>
-                          <object class="GtkButton" id="button3">
+                          <object class="GtkButton" id="b_execute">
                             <property name="label">Execute</property>
                             <property name="width-request">90</property>
                             <property name="height-request">34</property>
@@ -713,7 +713,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label31">
+                          <object class="GtkLabel" id="l_int">
                             <property name="width-request">123</property>
                             <property name="height-request">37</property>
                             <property name="visible">True</property>
@@ -727,7 +727,7 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label32">
+                          <object class="GtkLabel" id="l_numint">
                             <property name="width-request">130</property>
                             <property name="height-request">37</property>
                             <property name="visible">True</property>
@@ -744,7 +744,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="sb26">
+                          <object class="GtkSpinButton" id="sb_int">
                             <property name="name">sb_int</property>
                             <property name="width-request">155</property>
                             <property name="height-request">34</property>
@@ -771,7 +771,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="sb27">
+                          <object class="GtkSpinButton" id="sb_numint">
                             <property name="name">sb_numint</property>
                             <property name="width-request">142</property>
                             <property name="height-request">34</property>
@@ -798,7 +798,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkButton">
+                          <object class="GtkButton" id="b_clear">
                             <property name="label">Clear</property>
                             <property name="width-request">74</property>
                             <property name="height-request">34</property>
@@ -834,18 +834,17 @@
                 </child>
                 <child>
                   <object class="GtkFrame" id="frame5">
-                    <property name="width-request">100</property>
-                    <property name="height-request">80</property>
+                    <property name="width-request">400</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="label-xalign">0</property>
-                    <property name="shadow-type">none</property>
+                    <property name="shadow-type">out</property>
                     <child>
                       <object class="GtkFixed">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <child>
-                          <object class="GtkComboBoxText" id="cb_planet3">
+                          <object class="GtkComboBoxText" id="cb_planet">
                             <property name="width-request">96</property>
                             <property name="height-request">34</property>
                             <property name="visible">True</property>
@@ -873,7 +872,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkComboBoxText" id="cb_star1">
+                          <object class="GtkComboBoxText" id="cb_star">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="margin-start">5</property>
@@ -888,7 +887,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="entry1">
+                          <object class="GtkEntry" id="starcat">
                             <property name="name">entry1</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
@@ -901,7 +900,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkRadioButton" id="rb1">
+                          <object class="GtkRadioButton" id="rb_planet">
                             <property name="label" translatable="yes">Planet</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
@@ -911,7 +910,7 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkRadioButton" id="rb2">
+                          <object class="GtkRadioButton" id="rb_star">
                             <property name="label" translatable="yes">Star</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
@@ -934,7 +933,7 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="y">316</property>
+                    <property name="y">329</property>
                   </packing>
                 </child>
               </object>

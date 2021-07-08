@@ -260,27 +260,27 @@ int main(int argc, char *argv[]) {
 
   window = GTK_WIDGET(gtk_builder_get_object(builder, "window1"));
   textbuffer1 = GTK_TEXT_BUFFER(gtk_builder_get_object(builder, "textbuffer1"));
-  sb_hr = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb13"));
-  sb_min = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb12"));
-  sb_sec = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb14"));
-  sb_int = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb26"));
-  sb_numint = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb27"));
-  sb_lat = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb6"));
-  sb_lng = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb7"));
-  sb_height = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb8"));
-  sb_temp = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb9"));
-  sb_press = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb10"));
-  sb_dt = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb22"));
+  sb_hr = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb_hr"));
+  sb_min = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb_min"));
+  sb_sec = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb_sec"));
+  sb_int = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb_int"));
+  sb_numint = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb_numint"));
+  sb_lat = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb_lat"));
+  sb_lng = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb_lng"));
+  sb_height = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb_height"));
+  sb_temp = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb_temp"));
+  sb_press = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb_press"));
+  sb_dt = GTK_SPIN_BUTTON(gtk_builder_get_object(builder, "sb_dt"));
   cal = GTK_CALENDAR(gtk_builder_get_object(builder, "cal1"));
-  cb_planet = GTK_COMBO_BOX(gtk_builder_get_object(builder, "cb_planet3"));
-  rb_TTUT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb4"));
-  rb_TT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb5"));
-  rb_UT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb6"));
+  cb_planet = GTK_COMBO_BOX(gtk_builder_get_object(builder, "cb_planet"));
+  rb_TTUT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb_TTUT"));
+  rb_TT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb_TT"));
+  rb_UT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb_UT"));
 
-  rb_planet = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb1"));
-  rb_star = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb2"));
-  cb_star = GTK_COMBO_BOX(gtk_builder_get_object(builder, "cb_star1"));
-  ent_starcat = GTK_ENTRY(gtk_builder_get_object(builder, "entry1"));
+  rb_planet = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb_planet"));
+  rb_star = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb_star"));
+  cb_star = GTK_COMBO_BOX(gtk_builder_get_object(builder, "cb_star"));
+  ent_starcat = GTK_ENTRY(gtk_builder_get_object(builder, "starcat"));
 
   // gtk_builder_connect_signals(builder, widgets);
   gtk_builder_connect_signals(builder, NULL);
