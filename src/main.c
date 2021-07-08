@@ -256,7 +256,7 @@ int main(int argc, char *argv[]) {
 
   gtk_init(&argc, &argv);
 
-  builder = gtk_builder_new_from_file("glade/example.glade");
+  builder = gtk_builder_new_from_file("aa-gtk.glade");
 
   window = GTK_WIDGET(gtk_builder_get_object(builder, "window1"));
   textbuffer1 = GTK_TEXT_BUFFER(gtk_builder_get_object(builder, "textbuffer1"));
