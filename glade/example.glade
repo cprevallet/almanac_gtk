@@ -971,6 +971,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="tooltip-text" translatable="yes">Star catalog filename</property>
+                                <signal name="changed" handler="populate_star" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="x">205</property>

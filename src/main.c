@@ -23,35 +23,39 @@ GtkComboBox   *cb_star;
 GtkRadioButton *rb_star;
 GtkEntry       *ent_starcat;
 static char starnam[80] = "/usr/share/aa/star.cat";
-//struct entry
-//	{
-//	char obname[32];	/* Object name (31 chars) */
-//	int  line;		    /* Line number */
-//	};
+//static char starnam[80] = "/usr/share/aa/messier.cat";
 
 // Read star catalog.
-int read_star() {
+void populate_star() {
     FILE *f, *fopen();
     GtkListStore *liststore;
-
-    liststore = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_INT);
-//    GSList *starlist = NULL;
-//    entry  *star = NULL;
-    f = fopen( starnam, "r" );
-    //Store as a linked list
-    gtk_list_store_insert_with_values(liststore, NULL, -1,
-                                      0, "alpha",
-                                      1,  1,
-                                      -1);
-    gtk_list_store_insert_with_values(liststore, NULL, -1,
-                                      0, "beta",
-                                      1,  2,
-                                      -1);
-    gtk_combo_box_set_model (cb_star, GTK_TREE_MODEL(liststore));
-    /* liststore is now owned by combo, so the initial reference can
-     * be dropped */
-    g_object_unref(liststore);
-
+    char star[128];
+    int line =0;
+    // clear out any existing model first
+    gtk_combo_box_set_model(cb_star, NULL);
+    if ((f = fopen(gtk_entry_get_text(ent_starcat), "r" ))) {
+        // allocate space for an empty linked list
+        liststore = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_INT);
+        // read from the file and set the combobox "model" to the linked list
+        char buf[1024];
+        while(fgets(buf, sizeof buf, f) ) {
+           // the * says skip this value
+           if( sscanf(buf,"%*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %s", star) == 1 ) {
+                line++;
+                //append the starname and index to the linked list
+                gtk_list_store_insert_with_values(liststore, NULL, -1,
+                                                  0, star,
+                                                  1, line,
+                                                  -1);
+           }
+           else {
+           }
+        }
+        gtk_combo_box_set_model(cb_star, GTK_TREE_MODEL(liststore));
+        /* liststore is now owned by combo, so the initial reference can
+         * be dropped */
+        g_object_unref(liststore);
+    }
 }
 
 // Store the GUI variables in user's home directory as ana.ini
@@ -100,6 +104,7 @@ int store_values() {
     guint mon;
     guint day;
     gtk_calendar_get_date(cal, &year, &mon, &day);
+    //if rb_planet
     gint active_item = gtk_combo_box_get_active(cb_planet);
     FILE *fp;
     fp = fopen("/tmp/aa.txt", "w+");
@@ -123,7 +128,6 @@ int store_values() {
 // Load the values stored in the ini file as initial widget values.
 // Also initialize the calendar and time widgets with the current UTC values.
 int initialize_widgets() {
-  read_star();
   time_t rawtime;
   struct tm *utc;
   time(&rawtime);
@@ -134,7 +138,9 @@ int initialize_widgets() {
   gtk_spin_button_set_value(sb_sec, utc->tm_sec);
   gtk_calendar_select_month(cal, utc->tm_mon, utc->tm_year+1900);
   gtk_calendar_select_day(cal, utc->tm_mday);
+  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(rb_planet), TRUE);
   gtk_entry_set_text (ent_starcat, starnam);
+  populate_star(); //read from star catalog
   FILE *f, *fopen();
   char s[84]; //oddly specific
   double tlong, glat, height, attemp, atpress, dtgiven;
