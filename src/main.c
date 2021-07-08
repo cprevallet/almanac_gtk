@@ -1,3 +1,32 @@
+/* This program provides a GTK graphical user interface to the 
+   astronomical almanac (aa) program written by S. L. Moshier, November, 1987.
+
+   aa MUST be installed in order for this one to function.
+   On Debian systems it may be installed by "apt install astronomical-almanac"
+
+   aa is Copyright (c) 2005 by Stephen L. Moshier <steve@moshier.net>. 
+   aa-gtk is Copyright (c) 2020 by Craig S. Prevallet <penguintx@hotmail.com>. 
+
+   License:
+  
+   Permission is granted to copy, use, and distribute for any commercial
+   or noncommercial purpose in accordance with the requirements of
+   version 2.0 of the GNU General Public license.
+ 
+   This package is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this package; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+
+   On Debian systems, the complete text of the GNU General
+   Public License can be found in `/usr/share/common-licenses/GPL-2'.
+   
+   - Craig S. Prevallet, July, 2020  */
+
 #include <gtk/gtk.h>
 
 // make UI elements globals (ick)
