@@ -8,7 +8,7 @@ Building From Source
 --------------------
 
 ### Background
-Fitplot source code is available on GitHub.
+aa-gtk source code is available on GitHub.
 
 -   <https://github.com/cprevallet/almanac_gtk>
 
