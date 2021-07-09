@@ -294,11 +294,17 @@ void _on_clicked(GtkButton *b)
     exit(1);
   }
 
-  /* Read the output from the aa process pipeline at a time and display it.*/
+  /* Read the output from the aa process pipeline at a time and display it.
+   * Filter out interactive user prompts from results.
+   */
+
   while (fgets(line, sizeof(line), fp) != NULL) {
-    mark = gtk_text_buffer_get_insert(textbuffer1);
-    gtk_text_buffer_get_iter_at_mark(textbuffer1, &iter, mark);
-    gtk_text_buffer_insert(textbuffer1, &iter, line, -1);
+      if ( (strcspn(line, "?") == strlen(line)) &&          
+           (strcmp(line, "Enter starting date of tabulation\n")) ) {
+        mark = gtk_text_buffer_get_insert(textbuffer1);
+        gtk_text_buffer_get_iter_at_mark(textbuffer1, &iter, mark);
+        gtk_text_buffer_insert(textbuffer1, &iter, line, -1);
+      }
   }
   pclose(fp);
 }
