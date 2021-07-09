@@ -1,35 +1,39 @@
-/* This program provides a GTK graphical user interface to the 
-   astronomical almanac (aa) program written by S. L. Moshier, November, 1987.
-
-   aa MUST be installed in order for this one to function.
-   On Debian systems it may be installed by "apt install astronomical-almanac"
-
-   aa is Copyright (c) 2005 by Stephen L. Moshier <steve@moshier.net>. 
-   aa-gtk is Copyright (c) 2020 by Craig S. Prevallet <penguintx@hotmail.com>. 
-
-   License:
-  
-   Permission is granted to copy, use, and distribute for any commercial
-   or noncommercial purpose in accordance with the requirements of
-   version 2.0 of the GNU General Public license.
- 
-   This package is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this package; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
-
-   On Debian systems, the complete text of the GNU General
-   Public License can be found in `/usr/share/common-licenses/GPL-2'.
-   
-   - Craig S. Prevallet, July, 2020  */
+/* 
+ * This program provides a GTK graphical user interface to the 
+ * astronomical almanac (aa) program written by S. L. Moshier, November, 1987.
+ *
+ * aa MUST be installed in order for this one to function.
+ * On Debian systems it may be installed by "apt install astronomical-almanac"
+ *
+ * aa is Copyright (c) 2005 by Stephen L. Moshier <steve@moshier.net>.  
+ * aa-gtk is Copyright (c) 2020 by Craig S. Prevallet <penguintx@hotmail.com>. 
+ *
+ * License:
+ *
+ * Permission is granted to copy, use, and distribute for any commercial
+ * or noncommercial purpose in accordance with the requirements of
+ * version 2.0 of the GNU General Public license.
+ *
+ * This package is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this package; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+ *
+ * On Debian systems, the complete text of the GNU General
+ * Public License can be found in `/usr/share/common-licenses/GPL-2'.
+ * 
+ * - Craig S. Prevallet, July, 2020  
+ */
 
 #include <gtk/gtk.h>
 
-// make UI elements globals (ick)
+/* 
+ * make UI elements globals (ick)
+ */  
 GtkTextBuffer *textbuffer1;
 GtkSpinButton *sb_hr;
 GtkSpinButton *sb_min;
@@ -52,28 +56,27 @@ GtkComboBox *cb_star;
 GtkRadioButton *rb_star;
 GtkEntry *ent_starcat;
 static char starnam[80] = "/usr/share/aa/star.cat";
-// static char starnam[80] = "/usr/share/aa/messier.cat";
+/* static char starnam[80] = "/usr/share/aa/messier.cat"; */
 
-// Read star catalog.
+/* Read star catalog. */
 void populate_star() 
 {
   FILE *f, *fopen();
   GtkListStore *liststore;
   char star[128];
   int line = 0;
-  // clear out any existing model first
+
+  /* Clear out any existing model first. */
   gtk_combo_box_set_model(cb_star, NULL);
   if ((f = fopen(gtk_entry_get_text(ent_starcat), "r"))) {
-    // allocate space for an empty linked list
+    /* Allocate space for an empty linked list. */
     liststore = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_INT);
-    // read from the file and set the combobox "model" to the linked list
+    /* Read from the file and set the combobox "model" to the linked list. */
     char buf[1024];
     while (fgets(buf, sizeof buf, f)) {
-      // the * says skip this value
       if (sscanf(buf, "%*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %s",
                  star) == 1) {
         line++;
-        // append the starname and index to the linked list
         gtk_list_store_insert_with_values(liststore, NULL, -1, 0, star, 1, line,
                                           -1);
       } else {
@@ -81,13 +84,15 @@ void populate_star()
     }
     gtk_combo_box_set_model(cb_star, GTK_TREE_MODEL(liststore));
     /* liststore is now owned by combo, so the initial reference can
-     * be dropped */
+     * be dropped. 
+     */
     g_object_unref(liststore);
   }
 }
 
-// Store the GUI variables in user's home directory as ana.ini
-// for use with aa.
+/* Store the GUI variables in user's home directory as ana.ini for use
+ * with aa. 
+ */
 int store_ini() 
 {
   FILE *fp, *fopen();
@@ -127,7 +132,7 @@ int store_ini()
   }
 }
 
-// Store other values aa expects in a temp file to stream to aa.
+/* Store other values aa expects in a temp file to stream to aa. */
 int store_values() 
 {
   int hr = gtk_spin_button_get_value_as_int(sb_hr);
@@ -143,7 +148,7 @@ int store_values()
   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_planet))) {
     active_item = gtk_combo_box_get_active(cb_planet);
   }
-  // Star-stuff, this is entirely too complicated!
+  /* Star-stuff, this is entirely too complicated! */
   const gchar *catalog;
   int file_line = 0;
   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_star))) {
@@ -179,8 +184,9 @@ int store_values()
   }
 }
 
-// Load the values stored in the ini file as initial widget values.
-// Also initialize the calendar and time widgets with the current UTC values.
+/* Load the values stored in the ini file as initial widget values.
+ * Initialize the calendar and time widgets with the current UTC values.
+ */
 int initialize_widgets() 
 {
   time_t rawtime;
@@ -195,9 +201,9 @@ int initialize_widgets()
   gtk_calendar_select_day(cal, utc->tm_mday);
   gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(rb_planet), TRUE);
   gtk_entry_set_text(ent_starcat, starnam);
-  populate_star(); // read from star catalog
+  populate_star(); /* Read from star catalog. */
   FILE *f, *fopen();
-  char s[84]; // oddly specific
+  char s[84]; /* This is oddly specific??? */
   double tlong, glat, height, attemp, atpress, dtgiven;
   int jdflag;
   char *t = getenv("HOME");
@@ -244,9 +250,10 @@ int initialize_widgets()
     fclose(f);
     return 0;
   }
-  return -1; // should only get here if bad file read
+  return -1; /* We should only get here if bad file read. */
 }
 
+/* Clear out the text buffer when clear button is pressed. */
 void _clear_results(GtkButton *b) 
 {
   GtkTextIter start;
@@ -255,6 +262,10 @@ void _clear_results(GtkButton *b)
   gtk_text_buffer_delete(textbuffer1, &start, &end);
 }
 
+/* Execute the aa program via a popen call passing the values it
+ * expects via a file (written out by store_values.
+ */
+
 void _on_clicked(GtkButton *b) 
 {
   store_ini();
@@ -262,9 +273,9 @@ void _on_clicked(GtkButton *b)
   GtkTextMark *mark;
   GtkTextIter iter;
   FILE *fp;
-  char line[1035]; // why this big???
+  char line[1035]; /* Why this big??? */
 
-  // Open the command for reading.
+  /* Read the output from aa a line at a time and display it. */
   fp = popen("/usr/bin/aa < /tmp/aa.txt", "r");
 
   if (fp == NULL) {
@@ -273,18 +284,18 @@ void _on_clicked(GtkButton *b)
            "function.\n");
     exit(1);
   }
-
-  // Read the output a line at a time - and display it.
   while (fgets(line, sizeof(line), fp) != NULL) {
     mark = gtk_text_buffer_get_insert(textbuffer1);
     gtk_text_buffer_get_iter_at_mark(textbuffer1, &iter, mark);
     gtk_text_buffer_insert(textbuffer1, &iter, line, -1);
   }
-
-  // close
   pclose(fp);
 }
 
+/* This is the program entry point.  The builder reads an XML file (generated  
+ * by the Glade application and instantiations the associated objects as
+ * as globals.
+ */
 int main(int argc, char *argv[]) 
 {
   GtkBuilder *builder;
@@ -318,10 +329,9 @@ int main(int argc, char *argv[])
   cb_star = GTK_COMBO_BOX(gtk_builder_get_object(builder, "cb_star"));
   ent_starcat = GTK_ENTRY(gtk_builder_get_object(builder, "starcat"));
 
-  // gtk_builder_connect_signals(builder, widgets);
   gtk_builder_connect_signals(builder, NULL);
 
-  // retrieve initial values from .ini file.
+  /* Retrieve initial values from .ini file.*/ 
   initialize_widgets();
 
   g_object_unref(builder);
@@ -332,7 +342,7 @@ int main(int argc, char *argv[])
   return 0;
 }
 
-// called when window is closed
+/* Call when the window is closed.  Store GUI values before exiting.*/
 void on_window1_destroy() 
 {
   store_ini();
