@@ -58,12 +58,13 @@ GtkEntry *ent_starcat;
 static char starnam[80] = "/usr/share/aa/star.cat";
 /* static char starnam[80] = "/usr/share/aa/messier.cat"; */
 
-/* Read star catalog. */
+/* Read a star catalog. */
 void populate_star() 
 {
   FILE *f, *fopen();
   GtkListStore *liststore;
   char star[128];
+  char buf[1024];
   int line = 0;
 
   /* Clear out any existing model first. */
@@ -72,7 +73,6 @@ void populate_star()
     /* Allocate space for an empty linked list. */
     liststore = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_INT);
     /* Read from the file and set the combobox "model" to the linked list. */
-    char buf[1024];
     while (fgets(buf, sizeof buf, f)) {
       if (sscanf(buf, "%*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %*s %s",
                  star) == 1) {
@@ -97,6 +97,7 @@ int store_ini()
 {
   FILE *fp, *fopen();
   char s[84];
+
   char *t = getenv("HOME");
   strcpy(s, "aa.ini");
   if (t && strlen(t) < 70) {
@@ -114,15 +115,12 @@ int store_ini()
             gtk_spin_button_get_value(sb_temp));
     fprintf(fp, "%f ;Atmospheric pressure, millibars\n",
             gtk_spin_button_get_value(sb_press));
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_TTUT))) {
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_TTUT))) 
       fprintf(fp, "%d ; 0 - TDT=UT, 1 - input=TDT, 2 - input=UT\n", 0);
-    }
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_TT))) {
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_TT))) 
       fprintf(fp, "%d ; 0 - TDT=UT, 1 - input=TDT, 2 - input=UT\n", 1);
-    }
-    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_UT))) {
+    if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_UT))) 
       fprintf(fp, "%d ; 0 - TDT=UT, 1 - input=TDT, 2 - input=UT\n", 2);
-    }
     fprintf(fp, "%f ; Use this deltaT (sec) if nonzero, else compute it.\n",
             gtk_spin_button_get_value(sb_dt));
     fclose(fp);
@@ -130,27 +128,31 @@ int store_ini()
   } else {
     return -1;
   }
+  
 }
 
 /* Store other values aa expects in a temp file to stream to aa. */
 int store_values() 
 {
+  guint year;
+  guint mon;
+  guint day;
+  gint active_item = 0;
+  FILE *fp;
+  int file_line = 0;
+
+  /* Retrieve values from various GUI widgets. */
   int hr = gtk_spin_button_get_value_as_int(sb_hr);
   int min = gtk_spin_button_get_value_as_int(sb_min);
   int sec = gtk_spin_button_get_value_as_int(sb_sec);
   float interval = gtk_spin_button_get_value(sb_int);
   int num_intervals = gtk_spin_button_get_value_as_int(sb_numint);
-  guint year;
-  guint mon;
-  guint day;
   gtk_calendar_get_date(cal, &year, &mon, &day);
-  gint active_item = 0;
-  if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_planet))) {
+  if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_planet))) 
     active_item = gtk_combo_box_get_active(cb_planet);
-  }
-  /* Star-stuff, this is entirely too complicated! */
+  
+  /* Entries from the star combobox, are way more complicated! */
   const gchar *catalog;
-  int file_line = 0;
   if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(rb_star))) {
     active_item = 88;
     catalog = gtk_entry_get_text(ent_starcat);
@@ -161,7 +163,8 @@ int store_values()
     gtk_tree_model_get_value(tree_model, &iter, 1, &linenum);
     file_line = g_value_get_int(&linenum);
   }
-  FILE *fp;
+
+  /* Create the file containing the values for aa to run. */
   fp = fopen("/tmp/aa.txt", "w+");
   if (fp) {
     fprintf(fp, "%d\n", year);
@@ -191,8 +194,13 @@ int initialize_widgets()
 {
   time_t rawtime;
   struct tm *utc;
+  FILE *f, *fopen();
+  char s[84]; /* This is oddly specific??? */
+  double tlong, glat, height, attemp, atpress, dtgiven;
+  int jdflag;
+
+  /* Set default time and date to GMT time. */
   time(&rawtime);
-  /* Get GMT time */
   utc = gmtime(&rawtime);
   gtk_spin_button_set_value(sb_hr, utc->tm_hour);
   gtk_spin_button_set_value(sb_min, utc->tm_min);
@@ -202,10 +210,7 @@ int initialize_widgets()
   gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(rb_planet), TRUE);
   gtk_entry_set_text(ent_starcat, starnam);
   populate_star(); /* Read from star catalog. */
-  FILE *f, *fopen();
-  char s[84]; /* This is oddly specific??? */
-  double tlong, glat, height, attemp, atpress, dtgiven;
-  int jdflag;
+  
   char *t = getenv("HOME");
   strcpy(s, "aa.ini");
   if (t && strlen(t) < 70) {
@@ -265,7 +270,6 @@ void _clear_results(GtkButton *b)
 /* Execute the aa program via a popen call passing the values it
  * expects via a file (written out by store_values.
  */
-
 void _on_clicked(GtkButton *b) 
 {
   store_ini();
@@ -275,7 +279,7 @@ void _on_clicked(GtkButton *b)
   FILE *fp;
   char line[1035]; /* Why this big??? */
 
-  /* Read the output from aa a line at a time and display it. */
+  /* Read the output from the aa subprocess a line at a time and display it.*/
   fp = popen("/usr/bin/aa < /tmp/aa.txt", "r");
 
   if (fp == NULL) {
@@ -293,8 +297,7 @@ void _on_clicked(GtkButton *b)
 }
 
 /* This is the program entry point.  The builder reads an XML file (generated  
- * by the Glade application and instantiations the associated objects as
- * as globals.
+ * by the Glade application and instantiate the associated (global) objects.
  */
 int main(int argc, char *argv[]) 
 {
@@ -323,7 +326,6 @@ int main(int argc, char *argv[])
   rb_TTUT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb_TTUT"));
   rb_TT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb_TT"));
   rb_UT = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb_UT"));
-
   rb_planet = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb_planet"));
   rb_star = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "rb_star"));
   cb_star = GTK_COMBO_BOX(gtk_builder_get_object(builder, "cb_star"));
