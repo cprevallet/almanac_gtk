@@ -268,26 +268,33 @@ void _clear_results(GtkButton *b)
 }
 
 /* Execute the aa program via a popen call passing the values it
- * expects via a file (written out by store_values.
+ * expects via a file (written out by store_values and store_ini).
  */
 void _on_clicked(GtkButton *b) 
 {
-  store_ini();
-  store_values();
   GtkTextMark *mark;
   GtkTextIter iter;
   FILE *fp;
   char line[1035]; /* Why this big??? */
 
-  /* Read the output from the aa subprocess a line at a time and display it.*/
-  fp = popen("/usr/bin/aa < /tmp/aa.txt", "r");
+  /* Save the widget values prior to running aa. */
+  store_ini();
+  store_values();
 
+  /* Open a new process (as read) and run aa. 
+   * popen pipe is by definition one-directional.
+   * Passing the file in works around this limitation to pass
+   * in program arguments.
+   */
+  fp = popen("/usr/bin/aa < /tmp/aa.txt", "r");
   if (fp == NULL) {
     printf("Failed to run command\n");
     printf("Astronomical almanac must be installed for this program to "
            "function.\n");
     exit(1);
   }
+
+  /* Read the output from the aa process pipeline at a time and display it.*/
   while (fgets(line, sizeof(line), fp) != NULL) {
     mark = gtk_text_buffer_get_insert(textbuffer1);
     gtk_text_buffer_get_iter_at_mark(textbuffer1, &iter, mark);
