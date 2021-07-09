@@ -1,4 +1,4 @@
-<img src="https://github.com/cprevallet/almanac_gtk/aa-gtk_screenshot.png">
+<img src="https://github.com/cprevallet/almanac_gtk/blob/main/aa-gtk_screenshot.png">
 
 
 # aa-gtk
