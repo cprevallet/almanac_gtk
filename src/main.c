@@ -55,7 +55,8 @@ static char starnam[80] = "/usr/share/aa/star.cat";
 // static char starnam[80] = "/usr/share/aa/messier.cat";
 
 // Read star catalog.
-void populate_star() {
+void populate_star() 
+{
   FILE *f, *fopen();
   GtkListStore *liststore;
   char star[128];
@@ -87,7 +88,8 @@ void populate_star() {
 
 // Store the GUI variables in user's home directory as ana.ini
 // for use with aa.
-int store_ini() {
+int store_ini() 
+{
   FILE *fp, *fopen();
   char s[84];
   char *t = getenv("HOME");
@@ -126,7 +128,8 @@ int store_ini() {
 }
 
 // Store other values aa expects in a temp file to stream to aa.
-int store_values() {
+int store_values() 
+{
   int hr = gtk_spin_button_get_value_as_int(sb_hr);
   int min = gtk_spin_button_get_value_as_int(sb_min);
   int sec = gtk_spin_button_get_value_as_int(sb_sec);
@@ -178,7 +181,8 @@ int store_values() {
 
 // Load the values stored in the ini file as initial widget values.
 // Also initialize the calendar and time widgets with the current UTC values.
-int initialize_widgets() {
+int initialize_widgets() 
+{
   time_t rawtime;
   struct tm *utc;
   time(&rawtime);
@@ -243,14 +247,16 @@ int initialize_widgets() {
   return -1; // should only get here if bad file read
 }
 
-void _clear_results(GtkButton *b) {
+void _clear_results(GtkButton *b) 
+{
   GtkTextIter start;
   GtkTextIter end;
   gtk_text_buffer_get_bounds(textbuffer1, &start, &end);
   gtk_text_buffer_delete(textbuffer1, &start, &end);
 }
 
-void _on_clicked(GtkButton *b) {
+void _on_clicked(GtkButton *b) 
+{
   store_ini();
   store_values();
   GtkTextMark *mark;
@@ -279,7 +285,8 @@ void _on_clicked(GtkButton *b) {
   pclose(fp);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) 
+{
   GtkBuilder *builder;
   GtkWidget *window;
 
@@ -326,7 +333,8 @@ int main(int argc, char *argv[]) {
 }
 
 // called when window is closed
-void on_window1_destroy() {
+void on_window1_destroy() 
+{
   store_ini();
   gtk_main_quit();
 }
