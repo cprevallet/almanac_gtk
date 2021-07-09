@@ -297,7 +297,6 @@ void _on_clicked(GtkButton *b)
   /* Read the output from the aa process pipeline at a time and display it.
    * Filter out interactive user prompts from results.
    */
-
   while (fgets(line, sizeof(line), fp) != NULL) {
       if ( (strcspn(line, "?") == strlen(line)) &&          
            (strcmp(line, "Enter starting date of tabulation\n")) ) {
