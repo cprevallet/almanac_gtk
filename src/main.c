@@ -62,7 +62,7 @@ static char starnam[80] = "/usr/share/aa/star.cat";
 /* Read a star catalog. */
 void populate_star() 
 {
-  FILE *f, *fopen();
+  FILE *f;
   GtkListStore *liststore;
   char star[128];
   char buf[1024];
@@ -96,7 +96,7 @@ void populate_star()
  */
 int store_ini() 
 {
-  FILE *fp, *fopen();
+  FILE *fp;
   char s[84];
 
   char *t = getenv("HOME");
@@ -195,7 +195,7 @@ int initialize_widgets()
 {
   time_t rawtime;
   struct tm *utc;
-  FILE *f, *fopen();
+  FILE *f;
   char s[84]; /* This is oddly specific??? */
   double tlong, glat, height, attemp, atpress, dtgiven;
   int jdflag;
